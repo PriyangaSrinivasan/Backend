@@ -28,7 +28,7 @@ app.use((err, req, res, next) => {
 connectDB();
 
 app.get('/',(req,res)=>{
-  res.status(200).send(`<h1 style="background-color:lightpink;padding:10px 0px;text-align:center">Blog-Diary</h1>`)
+  res.status(200).send("Welcome to Blog-Diary")
 })
 
 app.use("/api/auth", authRoute);
