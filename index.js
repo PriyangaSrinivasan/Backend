@@ -27,10 +27,6 @@ app.use((err, req, res, next) => {
 
 connectDB();
 
-app.get('/',(req,res)=>{
-  res.status(200).send(`<h1 style="background-color:lightpink;padding:10px 0px;text-align:center">Blog-Diary</h1>`)
-})
-
 app.use("/api/auth", authRoute);
 app.use("/api/user",userRoute);
 app.use("/api/post",postRoute)
