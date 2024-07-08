@@ -36,5 +36,5 @@ app.use("/api/user",userRoute);
 app.use("/api/post",postRoute)
 
 app.listen(process.env.PORT, () => {
-  console.log(`server is running on port`);
+  console.log("server is running on port");
 });
