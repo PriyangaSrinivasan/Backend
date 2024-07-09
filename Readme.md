@@ -4,9 +4,9 @@
 
   It provides Restful Apis for user Authencation,The backend is built with Node.js,Express.js and MongoDb.
 
-# User : 
+User : 
      Register or Login in with google or manually , user can update  and delete their own account.
-# Post: 
+Post: 
     Create : The CreateOperation adds one or more new post.
     Read:You can read the All blog post.
     Update:It is used to modify exiting records in the database.You can modify your own post.
