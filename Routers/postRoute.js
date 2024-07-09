@@ -16,7 +16,7 @@ const router = express.Router();
 
 router.post("/create-post", middleware, createpost);
 router.get("/getposts", getAllposts);
-router.put("/updatepost/:id/", middleware, updateBlog);
+router.put("/updatepost/:id", middleware, updateBlog);
 router.delete("/deletepost/:id", middleware, deleteBlog);
 router.get("/getpost/:id", middleware, getBlogById);
 router.get("/userpost",middleware,getuserPosts)

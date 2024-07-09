@@ -4,7 +4,7 @@ import bcryptjs from 'bcryptjs'
 
 export const updateuser = async (req, res, next) => {
   const {id} =req.params.id;
-  if(req.user.id !==id){
+  if(req.user._id !==id){
     return next(errorHandler(400,"your're not allowed to update this user"))
   }
   if (req.body.password) {
