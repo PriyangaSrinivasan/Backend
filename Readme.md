@@ -12,8 +12,6 @@ Post:
     Update:It is used to modify exiting records in the database.You can modify your own post.
     Delete:The DeleteOperation allow the user to remove their own post from database.
 
-
-
 # Backend packages:
 `npm i express nodemon`
 `npm i bcryptjs cors dotenv`
