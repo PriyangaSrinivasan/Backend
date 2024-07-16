@@ -40,21 +40,19 @@ export const loginUser = async (req, res, next) => {
   //user Details
   try {
     const userDetails = await User.findOne({ email });
-    const userPassword = bcryptjs.compareSync(
-      password,
-      userDetails.password
-    );
+    const userPassword = bcryptjs.compareSync(password, userDetails.password);
     if (!userDetails || !userPassword) {
       return next(errorHandler(400, "Invaild credentials"));
     }
     const token = jwt.sign(
-      { id: userDetails._id,isAdmin:userDetails.isAdmin },
-      process.env.JWT_SECRET_KEY
+      { id: userDetails._id, isAdmin: userDetails.isAdmin },
+      process.env.JWT_SECRET_KEY,
+      { expiresIn: "1h" }
     );
     const { password: passkey, ...rest } = userDetails._doc;
     res
       .status(200)
-      .json({ message: "User loggedIn successfully", token:token,rest });
+      .json({ message: "User loggedIn successfully", token: token, rest });
   } catch (error) {
     next(error);
   }
@@ -66,11 +64,17 @@ export const google = async (req, res, next) => {
     const user = await User.findOne({ email });
     //visitor
     if (user) {
-      const token = jwt.sign({ id: user._id,isAdmin:user.isAdmin }, process.env.JWT_SECRET_KEY);
+      const token = jwt.sign(
+        { id: user._id, isAdmin: user.isAdmin },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: "1h" }
+      );
 
       const { password: passkey, ...rest } = user._doc;
 
-      res.status(200).json({ message: "User loggedin succesfully", rest, token });
+      res
+        .status(200)
+        .json({ message: "User loggedin succesfully", rest, token });
     } else {
       const generatePassword =
         Math.random().toString(36).slice(-8) +
@@ -87,7 +91,7 @@ export const google = async (req, res, next) => {
 
       await newUser.save();
       const token = jwt.sign(
-        { id: newUser._id,isAdmin:newUser.isAdmin },
+        { id: newUser._id, isAdmin: newUser.isAdmin },
         process.env.JWT_SECRET_KEY
       );
       const { password: passkey, ...rest } = newUser._doc;
